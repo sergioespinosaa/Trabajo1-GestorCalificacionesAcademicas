@@ -62,16 +62,11 @@ def determinar_estado(calificaciones, umbral):
     if not calificaciones:
         return None, None
 
-    aprobadas_idx, suspendidas_idx = list(), list()
-    for calificacion in calificaciones:
+    aprobadas_idx, suspendidas_idx = [], []
+    for idx, calificacion in enumerate(calificaciones):
         if calificacion >= umbral:
-            start = aprobadas_idx[-1] + 1 if aprobadas_idx else 0
-            idx = calificaciones.index(calificacion, start)
             aprobadas_idx.append(idx)
-            
         else:
-            start = suspendidas_idx[-1] + 1 if suspendidas_idx else 0
-            idx = calificaciones.index(calificacion, start)
             suspendidas_idx.append(idx)
 
     return aprobadas_idx, suspendidas_idx
